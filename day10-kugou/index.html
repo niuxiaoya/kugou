@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" >
+<head>
+    <meta charset="UTF-8">
+    <title>酷狗</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="header">
+    <i class="left"><img src="imgs/logo.png" alt="logo"></i>
+    <p ng-click="alert()">下载酷狗</p>
+    <i class="right fa fa-angle-right"></i>
+</header>
+<section class="section">
+    <div class="title">
+        <p class="blue"><a href="#/song">新歌</a></p>
+        <p><a href="#/ranking">排行</a></p>
+        <p><a href="#/sheet">歌单</a></p>
+        <p><a href="#/singer">歌手</a></p>
+    </div>
+
+    <div ng-view="">
+
+    </div>
+</section>
+<script src="js/swiper.min.js"></script>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script src="js/event.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script>
+    var app=angular.module("app",["ngRoute"])
+            .config(function($routeProvider){
+
+                $routeProvider
+                        .when("/song",{
+                            templateUrl:"page/song.html",
+                            controller:function($scope,info){
+                                $scope.info=info;
+                            },
+                            resolve:{
+                                info:function($http,$q){
+                                    var dfd=$q.defer();
+                                    $http.get("data/info.json")
+                                            .success(function(data){
+                                                dfd.resolve(data)
+                                            });
+                                    return dfd.promise
+                                }
+
+                            }
+                        })
+                        .when("/ranking",{
+                            templateUrl:"page/ranking.html",
+                            controller:function($scope,info){
+                                $scope.infos=info.info1;
+                            },
+                            resolve:{
+                                info:function($http,$q){
+                                    var dfd=$q.defer();
+                                    $http.get("data/info1.json")
+                                            .success(function(data){
+                                                dfd.resolve(data)
+                                            });
+                                    return dfd.promise
+                                }
+
+                            }
+                        })
+                        .when("/sheet",{
+                            templateUrl:"page/sheet.html",
+                            controller:function($scope,info){
+                                $scope.infos=info.info1;
+                            },
+                            resolve:{
+                                info:function($http,$q){
+                                    var dfd=$q.defer();
+                                    $http.get("data/info2.json")
+                                            .success(function(data){
+                                                dfd.resolve(data)
+                                            });
+                                    return dfd.promise
+                                }
+
+                            }
+                        })
+                        .when("/singer",{
+                            templateUrl:"page/singer.html",
+                            controller:function($scope,info){
+                                $scope.infos=info.info1;
+                            },
+                            resolve:{
+                                info:function($http,$q){
+                                    var dfd=$q.defer();
+                                    $http.get("data/info3.json")
+                                            .success(function(data){
+                                                dfd.resolve(data)
+                                            });
+                                    return dfd.promise
+                                }
+
+                            }
+                        })
+                        .otherwise("/song",{
+                            templateUrl:"page/song.html"
+                        })
+            });
+
+
+
+
+
+
+    $(".title>p").on("click",function(){
+        $(this).addClass("blue").siblings().removeClass("blue");
+    });
+
+
+</script>
+</body>
+</html>

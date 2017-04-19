@@ -1,0 +1,36 @@
+{
+  "info1":[
+            {
+            "imgs":"imgs/a.png",
+            "info":"酷狗飙升榜3"
+            },
+            {
+                "imgs":"imgs/b.png",
+                "info":"酷狗飙升榜5"
+            },
+            {
+              "imgs":"imgs/c.png",
+              "info":"酷狗飙升榜6"
+            },
+            {
+              "imgs":"imgs/d.png",
+              "info":"酷狗TOP500"
+            },
+            {
+              "imgs":"imgs/e.png",
+              "info":"网络红歌榜"
+            },
+            {
+              "imgs":"imgs/f.png",
+              "info":"DJ热歌榜"
+            },
+            {
+              "imgs":"imgs/g.jpg",
+              "info":"酷狗飙升榜1"
+            },{
+              "imgs":"imgs/h.png",
+              "info":"酷狗飙升榜2"
+            }
+        ]
+
+}
